@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'clientes'], function(){
+    Route::get('/', ['as' => 'clientes.index', 'uses' => 'ClienteController@index']);
+    Route::post('/', ['as' => 'clientes.index.store', 'uses' => 'ClienteController@store']);
+    Route::delete('/{id}', ['as' => 'clientes.index.destroy', 'uses' => 'ClienteController@destroy']);
+});
